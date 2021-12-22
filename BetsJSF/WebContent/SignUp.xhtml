@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Sign Up</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+	<h:body>
+		<h:form id="nireForm">
+			<h1>SIGN UP</h1>
+			<table>
+			<tr>
+				<td>Name:</td>
+				<td><h:inputText id="name" value="#{question.name}">
+					<f:validateRegex pattern="^[a-zA-Z]+$"/>
+				</h:inputText></td>
+			</tr>
+			<tr>
+				<td>Surname:</td>
+				<td><h:inputText id="surname" value="#{question.surname}">
+					<f:validateRegex pattern="^[a-zA-Z]+$"/>
+				</h:inputText></td>
+			</tr>
+			<tr>
+				<td>DNI:</td>
+				<td><h:inputText id="DNI" value="#{question.DNI}">
+					<f:validateRegex pattern="^[0-9]{8}[A-Z]{1}$"/>
+				</h:inputText></td>	
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><h:inputText id="email" value="#{question.email}">
+					<f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$"/>
+				</h:inputText></td>	
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><h:inputSecret id="password" value="#{question.password}">
+				</h:inputSecret></td>	
+			</tr>
+				<tr>
+				<td>Confirm password:</td>
+				<td><h:inputSecret id="cPassword" value="#{question.cPassword}">
+				</h:inputSecret></td>	
+			</tr>
+			</table>
+			<p>
+				<h:commandButton id="createU" value="Sign up" action="#{question.createUser()}" />
+				<h:commandButton value="Close" action="#{question.close}" />
+				
+			</p>
+			<h:messages id="mezuak" style="color:white"/>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

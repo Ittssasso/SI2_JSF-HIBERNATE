@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Query questions</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+	<h:body>
+		<h:form id="nireForm">
+			<h1>QUERY QUESTIONS</h1>
+			<table>
+			<tr>
+				<td>Event date:</td>
+				<td><p:calendar id="data" value="#{question.data}" navigator="ture" mode="inline">
+				<p:ajax event="dateSelect" listener="#{question.onDateSelect}" update=":nireForm:taulaEv, nireForm:taula"></p:ajax>
+				</p:calendar></td>
+			</tr>		
+			<tr>
+				<td>
+					<p:dataTable id="taulaEv" value="#{question.events}" var="item" selectionMode="single" selection="#{question.event}" border="1" rowKey="#{item.eventNumber}">
+						<p:ajax event="rowSelect" listener="#{question.onEventSelect}" update=":nireForm:taula"></p:ajax>
+						<f:facet name="header">Events:</f:facet>
+						<p:column headerText="Event#">
+								#{item.eventNumber}
+						</p:column>
+						<p:column headerText="Event">
+								#{item.description}
+						</p:column>
+					</p:dataTable>
+				</td>
+				<td>
+					<p:dataTable id="taula" value="#{question.questions}" var="item" border="1">
+						<f:facet name="header">Questions:</f:facet>
+						<p:column headerText="Question#">
+								#{item.questionNumber}
+						</p:column>
+						<p:column headerText="Question">
+								#{item.toString()}
+						</p:column>
+					</p:dataTable>
+				</td>
+			</tr>
+			</table>
+			<p>
+				<h:commandButton value="Close" action="#{question.back}"  />		
+			</p>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

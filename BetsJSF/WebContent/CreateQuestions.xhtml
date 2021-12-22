@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Create question</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+	<h:body>
+		<h:form id="nireForm">
+			<h1>CREATE QUESTION</h1>
+			<table>
+			<tr>
+				<td>Event date:</td>
+				<td><p:calendar id="data" value="#{question.data}" navigator="ture" mode="inline">
+				<p:ajax event="dateSelect" listener="#{question.onDateSelect}" update="evMenu"></p:ajax>
+				</p:calendar></td>		
+				<td>
+					<p:selectOneMenu id="evMenu" value="#{question.event}" converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{question.events}"/>
+					</p:selectOneMenu>
+				</td>
+			</tr>
+			<tr>
+				<td>Question:</td>
+				<td><h:inputText id="q" value="#{question.question}"></h:inputText></td>
+			</tr>
+			<tr>
+				<td>Min Bet:</td>
+				<td><h:inputText id="minBet" value="#{question.minBet}">
+				</h:inputText></td>
+				
+			</tr>
+			</table>
+			<p>
+				<h:commandButton id="createq" value="Create Quesiton" action="#{question.createQuestion()}" />
+				<h:commandButton value="Query Questions" action="#{question.query}" />
+				<h:commandButton value="Close" action="#{question.close}" />
+			</p>
+			<h:messages id="mezuak" style="color:white"/>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

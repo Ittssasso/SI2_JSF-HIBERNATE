@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Insert money</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+	<h:body>
+		<h:form id="nireForm">
+			<h1>INSERT MONEY</h1>
+			<table>
+			<tr>
+				<td>Money:</td>
+				<td><h:inputText id="money" value="#{question.money}">
+					<f:validateLongRange minimum="1" maximum="1000" />
+				</h:inputText></td>
+			</tr>
+			</table>
+			<p>
+				<h:commandButton id="insertM" value="Insert money" action="#{question.insertMoney()}" />
+				<h:commandButton value="Close" action="#{question.close}" />
+			</p>
+			<h:messages id="mezuak" style="color:white"/>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
